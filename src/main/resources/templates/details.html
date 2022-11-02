@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout=http://www.ultraq.net.nz/thymeleaf/layout
+      layout:decorate="layout/main">
+<body>
+<div layout:fragment="content">
+    <form th:action="@{'/details/' + ${task.id} + '/updatetask'}" method="post" class="d-flex" role="search">
+        <div class="modal-body">
+            <input th:value="${task.name}" class="form-control me-2 email" type="text" placeholder="Name" aria-label="Search"
+                   name="name">
+            <br>
+            <textarea th:text="${task.description}" class="form-control" placeholder="Description" id="floatingTextarea2"
+                      style="height: 100px" name="description"></textarea>
+            <br>
+            <input th:value="${task.deadlineDate}" class="form-control me-2 email" type="date" placeholder="" aria-label="Search"
+                   name="deadlineDate">
+            <br>
+            <select name="isCompleted" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value="1"></option>
+                <option th:value="${task.isCompleted}" th:text="${task.isCompleted}" selected></option>
+            </select>
+            <br>
+            <button onclick="reg()" class="btn btn-outline-success moibtn" type="submit">UPDATE TASK</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
