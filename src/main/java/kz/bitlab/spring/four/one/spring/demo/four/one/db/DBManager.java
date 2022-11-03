@@ -36,14 +36,23 @@ public class DBManager {
     }
 
     public static void updateTask(Task task){
-        for(Task checkTask : tasks){
-            if(checkTask.getId() == task.getId()){
-                checkTask = task;
+        for(int i = 0; i < tasks.size(); i++){
+            if(tasks.get(i).equals(task)){
+                tasks.set(i, task);
+                break;
             }
         }
     }
 
     public static void deleteTask(Task task){
-
+        for(int i = 0; i < tasks.size(); i++){
+            if(tasks.get(i).equals(task)){
+                tasks.remove(task);
+                for (int j = Math.toIntExact(task.getId()) - 1; j < tasks.size(); j++) { //меняет id всем объектам, находящихся после данного
+                    tasks.get(j).setId(tasks.get(j).getId() - 1);
+                }
+                break;
+            }
+        }
     }
 }

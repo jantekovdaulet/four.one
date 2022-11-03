@@ -5,7 +5,7 @@
       layout:decorate="layout/main">
 <body>
 <div layout:fragment="content">
-    <form th:action="@{'/details/' + ${task.id} + '/updatetask'}" method="post" class="d-flex" role="search">
+    <form th:action="@{'/updatetask/' + ${task.id}}" method="post" class="d-flex" role="search">
         <div class="modal-body">
             <input th:value="${task.name}" class="form-control me-2 email" type="text" placeholder="Name" aria-label="Search"
                    name="name">
@@ -17,13 +17,19 @@
                    name="deadlineDate">
             <br>
             <select name="isCompleted" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option value="1"></option>
-                <option th:value="${task.isCompleted}" th:text="${task.isCompleted}" selected></option>
+                <option th:text="${task.isCompleted ? 'YES':'NO'}"></option>
+                <option th:text="${!task.isCompleted ? 'YES':'NO'}"></option>
             </select>
             <br>
-            <button onclick="reg()" class="btn btn-outline-success moibtn" type="submit">UPDATE TASK</button>
+            <button onclick="reg()" class="btn btn-outline-success moibtn" type="submit">SAVE TASK</button>
         </div>
     </form>
+    <br>
+    <form th:action="@{'/deletetask/' + ${task.id}}" method="post" class="d-flex" role="search">
+        <input type="hidden" name="id" th:value="${task.id}">
+        <button onclick="reg()" class="btn btn-outline-success moibtn" type="submit">DELETE TASK</button>
+    </form>
+
 </div>
 </body>
 </html>

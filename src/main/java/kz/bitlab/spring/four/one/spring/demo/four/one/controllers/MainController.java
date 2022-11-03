@@ -38,18 +38,29 @@ public class MainController {
         return "redirect:/";
     }
 
-    @PostMapping(value = "/details/{id}/updatetask")
+    @PostMapping(value = "/updatetask/{id}")
     public String updateTask(@PathVariable(name = "id") Long id,
                              @RequestParam(name = "name") String name,
                              @RequestParam(name = "description") String description,
                              @RequestParam(name = "deadlineDate") String deadlineDate,
                              @RequestParam(name = "isCompleted") boolean isCompleted) {
-        DBManager.updateTask(new Task(id, name, description, deadlineDate, isCompleted));
+        Task task = DBManager.getTask(id);
+        if(task!=null){
+            task.setName(name);
+            task.setDescription(description);
+            task.setDeadlineDate(deadlineDate);
+            task.setCompleted(isCompleted);
+            DBManager.updateTask(task);
+        }
         return "redirect:/";
     }
 
-    @PostMapping(value = "/deletetask")
-    public String deleteTask() {
+    @PostMapping(value = "/deletetask/{id}")
+    public String deleteTask(@PathVariable(name = "id") Long id) {
+        Task task = DBManager.getTask(id);
+        if(task!=null){
+            DBManager.deleteTask(task);
+        }
         return "redirect:/";
     }
 

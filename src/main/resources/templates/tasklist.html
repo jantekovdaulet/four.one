@@ -52,7 +52,7 @@
                 <th scope="row" th:text="${task.id}"></th>
                 <td th:text="${task.name}"></td>
                 <td th:text="${task.deadlineDate}"></td>
-                <td th:text="${task.isCompleted}"></td>
+                <td th:text="${task.isCompleted ? 'YES' : 'NO'}"></td>
                 <td>
                     <a th:href="@{'/details/' + ${task.id}}" class="btn btn-primary" role="button" aria-disabled="true">DETAILS</a>
                 </td>
