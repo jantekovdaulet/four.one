@@ -48,6 +48,7 @@ public class DBManager {
         for(int i = 0; i < tasks.size(); i++){
             if(tasks.get(i).equals(task)){
                 tasks.remove(task);
+                id--;
                 for (int j = Math.toIntExact(task.getId()) - 1; j < tasks.size(); j++) { //меняет id всем объектам, находящихся после данного
                     tasks.get(j).setId(tasks.get(j).getId() - 1);
                 }
