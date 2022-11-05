@@ -55,5 +55,18 @@ public class DBManager {
                 break;
             }
         }
+        
+//         вот еще есть такой вариант с foreach
+//         for(Task checkTask : tasks){
+//             if(tasks.get(Math.toIntExact(checkTask.getId()) - 1).equals(task)){
+//                 tasks.remove(task);
+//                 id--;
+//                 for (int i = Math.toIntExact(task.getId()) - 1; i < tasks.size(); i++) { //меняет id всем объектам, находящихся после данного
+//                     tasks.get(i).setId(tasks.get(i).getId() - 1);
+//                 }
+//                 break;
+//             }
+//         }
+        
     }
 }
