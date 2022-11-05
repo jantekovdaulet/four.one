@@ -6,8 +6,7 @@
 <body>
 <div layout:fragment="content">
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        + Add New Task
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="'+ ' + #{button.new.task}">
     </button>
     <br>
     <!-- Modal -->
@@ -15,21 +14,21 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">New Task</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" th:text="#{label.new.task}"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form th:action="@{'/addtask'}" method="post" class="d-flex" role="search">
                     <div class="modal-body">
-                        <input class="form-control me-2 email" type="text" placeholder="Name" aria-label="Search"
+                        <input class="form-control me-2 email" type="text" th:placeholder="#{label.name}" aria-label="Search"
                                name="name">
                         <br>
-                        <textarea class="form-control" placeholder="Description" id="floatingTextarea2"
+                        <textarea class="form-control" th:placeholder="#{label.description}" id="floatingTextarea2"
                                   style="height: 100px" name="description"></textarea>
                         <br>
                         <input class="form-control me-2 email" type="date" placeholder="" aria-label="Search"
                                name="deadlineDate">
                         <br>
-                        <button onclick="reg()" class="btn btn-outline-success moibtn" type="submit">ADD TASK</button>
+                        <button onclick="reg()" class="btn btn-outline-success moibtn" type="submit" th:text="#{button.add}"></button>
                     </div>
                 </form>
             </div>
@@ -41,10 +40,10 @@
             <thead>
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">DEADLINE DATE</th>
-                <th scope="col">IS COMPLETED</th>
-                <th scope="col">DETAILS</th>
+                <th scope="col" th:text="#{label.name}"></th>
+                <th scope="col" th:text="#{label.deadline}"></th>
+                <th scope="col" th:text="#{label.completed}"></th>
+                <th scope="col" th:text="#{button.details}"></th>
             </tr>
             </thead>
             <tbody>
@@ -54,7 +53,7 @@
                 <td th:text="${task.deadlineDate}"></td>
                 <td th:text="${task.isCompleted ? 'YES' : 'NO'}"></td>
                 <td>
-                    <a th:href="@{'/details/' + ${task.id}}" class="btn btn-primary" role="button" aria-disabled="true">DETAILS</a>
+                    <a th:href="@{'/details/' + ${task.id}}" th:text="#{button.details}" class="btn btn-primary" role="button" aria-disabled="true"></a>
                 </td>
             </tr>
             </tbody>

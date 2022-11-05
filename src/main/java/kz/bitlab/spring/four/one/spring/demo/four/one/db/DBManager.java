@@ -45,12 +45,12 @@ public class DBManager {
     }
 
     public static void deleteTask(Task task){
-        for(int i = 0; i < tasks.size(); i++){
-            if(tasks.get(i).equals(task)){
+        for(Task checkTask : tasks){
+            if(tasks.get(Math.toIntExact(checkTask.getId()) - 1).equals(task)){
                 tasks.remove(task);
                 id--;
-                for (int j = Math.toIntExact(task.getId()) - 1; j < tasks.size(); j++) { //меняет id всем объектам, находящихся после данного
-                    tasks.get(j).setId(tasks.get(j).getId() - 1);
+                for (int i = Math.toIntExact(task.getId()) - 1; i < tasks.size(); i++) { //меняет id всем объектам, находящихся после данного
+                    tasks.get(i).setId(tasks.get(i).getId() - 1);
                 }
                 break;
             }
